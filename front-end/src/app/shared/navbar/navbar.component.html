@@ -1,0 +1,29 @@
+<nav class="container-fluid w-100 px-5    flex-md-column  justify-content-center">
+    <div class="row p-xl-4  justify-content-center">
+        <div class="col d-flex flex-row gap-5   ">
+            <img class="mainLogo" src="/assets/images/logo.png" alt="logo"/>
+            <div class="align-content-center "> 
+                <i id="searchbtn" class="fas fa-search position-absolute  pointer navicon " (click)="handleSearch()"></i>
+                <input class="rounded-pill  search" placeholder="search" type="text" (keydown.enter)="handleSearch()" [(ngModel)]="searchValue">
+            </div>
+        </div>
+        <div class="col d-flex flex-row justify-content-end align-items-center   gap-3 ">
+            <img *ngIf="isLoggedIn; else notLoggedIn" [routerLink]="'account/profile'" [src]="imgUrl ? imgUrl : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'" class="userAvatar rounded-circle pointer" alt="user" />
+            <ng-template #notLoggedIn>
+                <i [routerLink]="'/account/login'" class="fa-regular fa-user navicon pointer"></i>
+            </ng-template>    
+            <i class="fa-regular fa-heart navicon pointer" [routerLink]="'/account/wishlist'"></i>
+            <i class="fa-solid fa-cart-shopping navicon pointer" [routerLink]="'/account/cart'"></i>
+        </div>
+    </div>
+    <div class="row p-md-5 p-3 w-100  flex-row  justify-content-center  ">
+        <ul class="nav gap-4 justify-content-center ">
+            <li *ngFor="let link of navLinks">
+               <a class="navLink header" [routerLink]="link.link">{{link.name}}</a>
+            </li>
+        </ul>
+    </div>
+    
+
+
+</nav>

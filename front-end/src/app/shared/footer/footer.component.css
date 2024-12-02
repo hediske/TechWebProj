@@ -1,0 +1,65 @@
+.first{
+    background-color: #F5F5F5;
+}
+.contact{
+    color: #525252;
+    font-size:0.8rem !important;
+}
+.link{
+    color: #525252;
+    border:#c2c2c2 1px solid;
+    height: 1em;
+    width: 1em;
+    text-decoration: none !important;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+
+.logo{
+    font-size:0.5em;
+    padding-top: 0.4em;
+}
+
+.link:hover{
+    background-color: white;
+    transform: scale(0.9);
+    opacity: 0.8;   
+    border: none;
+}
+
+
+
+.logo:hover{
+    transform: scale(1.4);
+    opacity: 1 !important;
+}
+
+.link::before{
+    content: "";
+    position: absolute;
+    height: 1em;
+    width: 1em;
+    background-color: transparent;
+    border: none;
+    border-color: white;
+    border-radius: 50%;
+    animation: none;
+    transition: all 0.3s ease;
+
+;
+}
+
+.link:hover::before{
+    transform: scale(1.5); 
+    border:white 3px solid;
+}
+
+.cardLogo{
+    height: 30px;
+    width: 50px;
+}
+
+.altlogo{
+    height: 250px;
+    width: 250px;
+}
