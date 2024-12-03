@@ -1,19 +1,32 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/user.dto';
+import { CreateUserDto, ReturnUserDto } from './dto/user.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './user.entity';
 
-@Controller('users')
+@ApiTags('users') // sawgger tag
+@Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
-
+  constructor(private readonly userService: UserService) { }
   @Get()
-  findAll(): Promise<User[]> {
-    return this.userService.findAll();
+  @ApiOperation({ summary: 'all users' })
+  @ApiResponse({ status: 200, description: 'success', type: [ReturnUserDto] })
+  async getAllUsers(): Promise<ReturnUserDto[]> {
+    return this.userService.getAllUsers();
+  }
+
+
+  @Get(':id')
+  @ApiOperation({ summary: 'user by id' })
+  @ApiResponse({ status: 200, description: 'success', type: User })
+  async getUserById(@Param('id') id: number): Promise<ReturnUserDto> {
+    return this.userService.getUserById(id);
   }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.create(createUserDto);
+  @ApiOperation({ summary: 'create user' })
+  @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<ReturnUserDto> {
+    return this.userService.createUser(createUserDto);
   }
 }

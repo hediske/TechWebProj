@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { UserRole, UserStatus } from '../enum/userType';
+import { Token } from 'src/token/token.entity';
 
 @Entity()
 export class User {
@@ -42,4 +43,6 @@ export class User {
     default: UserStatus.ACTIVE,
   })
   status: UserStatus;
+  @OneToMany(() => Token, token => token.user)
+  tokens: Token[]; // ORM dima lazyload relationships yaani tawa ana field mte3 tokens te3 kol user (no need to query it manually)
 }

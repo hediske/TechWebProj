@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { EnumModule } from './enum/enum.module';
 import { User } from './user/user.entity';
+import { TokenModule } from './token/token.module';
+import { Token } from './token/token.entity';
 
 @Module({
   imports: [
@@ -21,13 +23,14 @@ import { User } from './user/user.entity';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [User],
+        entities: [User,Token],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UserModule,
     EnumModule,
+    TokenModule,
   ],
   controllers: [AppController],
   providers: [AppService],
