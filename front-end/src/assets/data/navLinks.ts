@@ -4,10 +4,7 @@ export interface navLink {
 }
 
 export const navLinks : navLink[] = [
-    {
-        "name" : "Home",
-        "link" : "/"
-    },
+
 
     {
         "name" : "Skin Care",

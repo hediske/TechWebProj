@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { navLinks, navLink } from 'src/assets/data/navLinks'; 
 import { AuthService } from '../../user/auth.service';
 import { UserService } from 'src/app/user/user.service';
@@ -9,6 +9,8 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class NavbarComponent implements OnInit {
 
+  @ViewChild('stickyNav') stickyNav: any;
+  
   constructor(private authService: AuthService, private userService : UserService){}
 
   navLinks : navLink[] | undefined;
@@ -31,6 +33,24 @@ export class NavbarComponent implements OnInit {
       this.imgUrl = this.userService.getAvatar();
     }
   }
+
+  scrollCallback(){
+    const scrollPos : number = window.scrollY || document.documentElement.scrollTop
+    if(scrollPos > 100){
+      this.stickyNav.nativeElement.classList.add('sticky')
+    }
+    else{
+      this.stickyNav.nativeElement.classList.remove('sticky')
+    }
+
+    console.log(scrollPos)
+  }
+
+  @HostListener('window:scroll', [])
+    onWindowScroll(){
+      this.scrollCallback()
+    }
+  
   
   
   ngOnInit(): void {

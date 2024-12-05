@@ -44,9 +44,9 @@ body{
     color:var(--main-color);
     font-size: 0.83em;
     font-weight:700;
-    line-height: 25px;
+    line-height: 10px;
     text-decoration: none;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     text-transform: uppercase ;
     position: relative;
     font-family: Poppins-Bold;
@@ -69,7 +69,7 @@ body{
 
 .navLink:hover::before{
     animation-name: slide-in;
-    animation-duration: 0.6s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
 }
 
@@ -77,7 +77,7 @@ body{
 
 .navLink:not(:hover)::before{
     animation-name: slide-out;
-    animation-duration: 0.8s;
+    animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }
 
@@ -105,6 +105,7 @@ body{
     border:none;
     outline: 0cm;
     height: 3rem;
+    font-size: 0.8em;
     padding-left: 50px;
 }
 
@@ -113,7 +114,7 @@ body{
 }
 
 .navicon{
-    font-size : 1.5rem;
+    font-size : 1.2rem;
     transition: transform 0.3s ease, opacity 0.3s ease;
 
 }
@@ -136,6 +137,34 @@ body{
 
 
 .mainLogo{
-    height: 100px;
+    height: 60px;
 }
 
+.fade-in{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 1.2s ease-in forwards;
+}
+
+@keyframes fadeInAnimation{
+    0%{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sticky{
+    position:sticky !important;
+    top: 0;
+    z-index: 999;
+    background-color: white !important;
+    box-shadow: #525252 0px 0px 1px 0px;
+}
+
+.hidden{
+    display: none;
+}

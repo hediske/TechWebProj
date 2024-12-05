@@ -1,5 +1,5 @@
-<nav class="container-fluid w-100 px-5    flex-md-column  justify-content-center">
-    <div class="row p-xl-4  justify-content-center">
+<nav  class="bg-white d-flex flex-column  container-fluid w-100 position-relative  justify-content-center">
+    <div class="row p-3 fix justify-content-center">
         <div class="col d-flex flex-row gap-5   ">
             <img class="mainLogo" src="/assets/images/logo.png" alt="logo"/>
             <div class="align-content-center "> 
@@ -16,14 +16,13 @@
             <i class="fa-solid fa-cart-shopping navicon pointer" [routerLink]="'/account/cart'"></i>
         </div>
     </div>
-    <div class="row p-md-5 p-3 w-100  flex-row  justify-content-center  ">
-        <ul class="nav gap-4 justify-content-center ">
-            <li *ngFor="let link of navLinks">
-               <a class="navLink header" [routerLink]="link.link">{{link.name}}</a>
-            </li>
-        </ul>
-    </div>
-    
 
 
 </nav>
+<div #stickyNav  class="fade-in row p-3 p-md-4  flex-row justify-content-center  ">
+    <ul class="nav gap-4 justify-content-center ">
+        <li *ngFor="let link of navLinks">
+           <a class="navLink header" [routerLink]="link.link">{{link.name}}</a>
+        </li>
+    </ul>
+</div>
