@@ -55,10 +55,10 @@ export class UserService {
     }
 
     async getAllUsers(
-        page: number ,
-        limit: number ,
-        sort: string ,
-        order: 'ASC' | 'DESC' ,
+        page: number,
+        limit: number,
+        sort: string,
+        order: 'ASC' | 'DESC',
     ): Promise<ReturnUserDto[]> {
         try {
             const offset = (page - 1) * limit;
@@ -106,5 +106,8 @@ export class UserService {
         } catch (error) {
             throw new InternalServerErrorException('error while deleting user');
         }
+    }
+    async findByEmail(email: string): Promise<User> {
+        return this.userRepository.findOne({ where: { email } });
     }
 }

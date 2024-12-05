@@ -1,13 +1,20 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, ReturnUserDto, UpdateUserDto } from './dto/user.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './user.entity';
+import { RolesGuard } from '../auth/roles.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guards';
+import { UserRole } from 'src/enum/userType';
+import { Roles } from 'src/auth/roles.decorator';
+
 
 @ApiTags('users') // sawgger tag
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'All users retrieved', type: [ReturnUserDto] })
@@ -26,7 +33,8 @@ export class UserController {
   }
 
 
-
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Get(':id')
   @ApiOperation({ summary: 'user by id' })
   @ApiResponse({ status: 200, description: 'success', type: User })
@@ -34,6 +42,8 @@ export class UserController {
     return this.userService.getUserById(id);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Post()
   @ApiOperation({ summary: 'create user' })
   @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })
@@ -41,13 +51,17 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
   //put 5ater changement mouch keml yaani some fields ...
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Put(':id')
   @ApiOperation({ summary: 'Update user' })
   @ApiResponse({ status: 200, description: 'User updated successfully', type: ReturnUserDto })
   async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<ReturnUserDto> {
     return this.userService.updateUser(id, updateUserDto);
   }
-
+  
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete user' })
   @ApiResponse({ status: 200, description: 'User deleted successfully' })

@@ -8,6 +8,7 @@ import { EnumModule } from './enum/enum.module';
 import { User } from './user/user.entity';
 import { TokenModule } from './token/token.module';
 import { Token } from './token/token.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { Token } from './token/token.entity';
     UserModule,
     EnumModule,
     TokenModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
