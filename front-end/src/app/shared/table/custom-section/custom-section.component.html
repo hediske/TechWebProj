@@ -1,0 +1,44 @@
+<div class="d-flex flex-row justify-content-around align-content-center ">
+    <div >
+        <label class="label m-4">View As</label>
+        <span>
+            <span class="pointer button first" (click)="setGridType('1')" [ngClass]="selected === '1' ? 'selected' : 'notSelected'">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+            <span class="pointer button" (click)="setGridType('2')" [ngClass]="selected === '2' ? 'selected' : 'notSelected'">
+                <i class="fa-solid fa-tally-2"></i>
+            </span>
+            <span class="pointer button " (click)="setGridType('3')" [ngClass]="selected === '3' ? 'selected' : 'notSelected'">
+                <i class="fa-solid fa-tally-3"></i>
+            </span>
+            <span class="pointer button " (click)="setGridType('4')" [ngClass]="selected === '4' ? 'selected' : 'notSelected'">
+                <i class="fa-solid fa-tally-4"></i>
+            </span>
+        </span>
+
+    </div>
+    <div class="d-flex flex-row justify-content-around align-content-center">
+        <div>
+            <label class="label m-4">Items Per Page</label>
+            <mat-form-field>
+            <mat-label>Items Page</mat-label>
+            <mat-select (selectionChange)="onPageSizeChange($event.value)">
+                <mat-option *ngFor="let page of pages" [value]="page.value">
+                {{page.viewValue}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <label class="label m-4">Sort By</label>
+            <mat-form-field>
+                <mat-label>Sort By</mat-label>
+                <mat-select (selectionChange)="onSortChange($event.value)">
+                    <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+                    {{sort.viewValue}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+        </div>
+    </div>
+</div>
