@@ -25,4 +25,4 @@ export interface  sortInterface{
 
 export type SortDirection = 'asc' | 'desc';
 
-export type gridType = 'FoorCol' | 'threeCol' | 'twoCol' | 'lines' ;
+export type gridType = 'foorCol' | 'threeCol' | 'twoCol' | 'lines' ;

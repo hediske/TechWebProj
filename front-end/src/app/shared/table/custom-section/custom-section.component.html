@@ -2,16 +2,16 @@
     <div >
         <label class="label m-4">View As</label>
         <span>
-            <span class="pointer button first" (click)="setGridType('1')" [ngClass]="selected === '1' ? 'selected' : 'notSelected'">
+            <span class="pointer button first" (click)="setGridType('lines')" [ngClass]="selected === 'lines' ? 'selected' : 'notSelected'">
                 <i class="fa-solid fa-bars"></i>
             </span>
-            <span class="pointer button" (click)="setGridType('2')" [ngClass]="selected === '2' ? 'selected' : 'notSelected'">
+            <span class="pointer button" (click)="setGridType('twoCol')" [ngClass]="selected === 'twoCol' ? 'selected' : 'notSelected'">
                 <i class="fa-solid fa-tally-2"></i>
             </span>
-            <span class="pointer button " (click)="setGridType('3')" [ngClass]="selected === '3' ? 'selected' : 'notSelected'">
+            <span class="pointer button " (click)="setGridType('threeCol')" [ngClass]="selected === 'threeCol' ? 'selected' : 'notSelected'">
                 <i class="fa-solid fa-tally-3"></i>
             </span>
-            <span class="pointer button " (click)="setGridType('4')" [ngClass]="selected === '4' ? 'selected' : 'notSelected'">
+            <span class="pointer button " (click)="setGridType('foorCol')" [ngClass]="selected === 'foorCol' ? 'selected' : 'notSelected'">
                 <i class="fa-solid fa-tally-4"></i>
             </span>
         </span>

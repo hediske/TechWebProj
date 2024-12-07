@@ -1,16 +1,24 @@
-<section *ngIf="!isCustomizable" class="container">
+<section *ngIf="isCustomizable" class="container">
     <app-custom-section></app-custom-section>
 </section>
-<section *ngIf="!isFilterable" class="container">
+<section *ngIf="isFilterable" class="container">
     <app-filter-section></app-filter-section>   
 </section>
-<!-- {{sort | json}}
-{{grid | json}}
-{{pageSize | json}} -->
-
-<section class="">
-
-
+<section class="d-flex flex-wrap container-fluid ">
+    <div *ngFor="let item of Tabledata" [ngClass]="gridClass" class="mb-3">
+        <ng-container *ngIf="isCustomizable && grid === 'lines'; else cardView">
+            <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item }"></ng-container>
+          </ng-container>
+          <ng-template #cardView>
+            <ng-container *ngTemplateOutlet="cardTemplate; context: { $implicit: item }"></ng-container>
+          </ng-template>
+    </div>
 
 </section>
+<section >
+    <app-paginator></app-paginator>
+</section>
 
+{{currentPage}}
+{{  grid}}
+{{  pageSize}}

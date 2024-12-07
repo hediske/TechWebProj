@@ -9,7 +9,7 @@ import { gridType } from '../types/tableInterfaces';
 })
 export class CustomSectionComponent implements OnInit {
 
-  selected = '1'  // Default selected grid type
+  selected : gridType = 'lines' // Default selected grid type
 
 
 
@@ -32,7 +32,7 @@ export class CustomSectionComponent implements OnInit {
   ]
 
 
-  setGridType(grid : string) {
+  setGridType(grid :gridType) {
     this.selected = grid
     this.onGridChange(this.selected)
   }
@@ -45,13 +45,14 @@ export class CustomSectionComponent implements OnInit {
     this.tableService.updatePageSize(pageSize);
   }
 
-  onGridChange(grid: string) {
-    this.tableService.updateGrid(grid as gridType);
+  onGridChange(grid: gridType) {
+    this.tableService.updateGrid(grid);
   }
 
   ngOnInit(): void {
-    this.onGridChange(this.selected)
-    this.onPageSizeChange(50)
-    this.onSortChange('5')
+    setTimeout(() => 
+    {
+    this.onSortChange('5')},400   
+  )
   }
 }

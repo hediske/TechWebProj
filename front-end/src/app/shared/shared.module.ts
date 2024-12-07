@@ -11,6 +11,7 @@ import { FilterSectionComponent } from './table/filter-section/filter-section.co
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { PaginatorComponent } from './table/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FooterComponent,
     TableComponent,
     CustomSectionComponent,
-    FilterSectionComponent
+    FilterSectionComponent,
+    PaginatorComponent
   ],
   imports: [
     CommonModule,

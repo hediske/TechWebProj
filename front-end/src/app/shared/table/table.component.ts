@@ -1,7 +1,8 @@
   import { Component, Input, OnInit } from '@angular/core';
-  import { columnInterface,sortInterface,dataInterface, gridType } from './types/tableInterfaces';
+  import { columnInterface, sortInterface, dataInterface, gridType } from './types/tableInterfaces';
   import { FilterService } from '../service/filter.service';
   import { TableService } from './table.service';
+import { combineLatest } from 'rxjs';
 
   @Component({
     selector: 'app-table',
@@ -9,63 +10,106 @@
     styleUrls: ['./table.component.css']
   })
   export class TableComponent implements OnInit{
-    @Input() isCustomizable: boolean = false;
+    @Input() isCustomizable: boolean = true;
     @Input() isFilterable: boolean = false;
     @Input() allDataLoaded : boolean = false;
-    @Input({required : true}) columns : columnInterface[] = [];
-    @Input() sortFilters : sortInterface[] = [];
-    @Input() data : dataInterface[] = [];
-    @Input() dataFetcher : ((filters : any ,page : number ) => Promise<any> ) | undefined = undefined;
-
-    Tabledata = [];
-    filters = []
+    @Input() requireCols : boolean = false;
+    @Input() columns : columnInterface[] = [];
+    @Input() sortFilter : sortInterface | undefined = undefined;
+    @Input() data : any[] = [];
+    @Input() dataFetcher : ((filters : any ,page : number,size:number,sort:any ) => Promise<any> ) | undefined = undefined;
+    @Input() cardTemplate: any;
+    @Input({required:true}) rowTemplate: any;
+    
+    Tabledata : any[] = [];
+    filters : any[] = []
     currentPage : number = 1
-
-    grid : gridType | undefined;
-    sort : string | undefined;
+    isLoading : boolean = false
+    isError : boolean = false
+    grid : gridType | undefined = 'lines';
     pageSize : number | undefined;
+    gridClass : string = ""
 
-    gridClass : string =""
 
-
-    constructor(private filterService : FilterService,private tableService : TableService) { }
+    constructor(private tableService : TableService) { }
     ngOnInit(): void {
-      this.tableService.gridObservable$.subscribe(data => {
-        this.grid = data;
-      })
-      this.tableService.sortObservable$.subscribe(data => {
-        this.sort = data;
-      })
-      this.tableService.pageSizeObservable$.subscribe(data => {
-        this.pageSize = data;
-      })
-
+      if (!this.rowTemplate) {
+        throw new Error("rowTemplate is required for TableComponent.");
+      }
+      combineLatest([
+        this.tableService.pageSizeObservable$,
+        this.tableService.sortObservable$,
+      ]).subscribe(   ([pageSize, currentPage]) => {    
+         // this.sortInterface = sort;
+        this.pageSize = pageSize;
+        this.tableService.updateCurrentPage(1);
+        this.applyChanges();}
+      );
+      combineLatest([
+        this.tableService.gridObservable$,
+        this.tableService.currentPageObservable$
+      ]).subscribe(([grid, currentPage]) => {
+        this.grid = grid;
+        this.currentPage = currentPage || 1;
+        this.applyChanges();
+      });
       this.applyChanges()
-
     }
 
     updateGrid(){
       if (this.grid) {
         switch (this.grid) {
-          case 'FoorCol':
-            this.gridClass = 'col-3'; // 4 columns
+          case 'foorCol':
+            this.gridClass = 'col-3'; 
             break;
           case 'threeCol':
-            this.gridClass = 'col-4'; // 3 columns
+            this.gridClass = 'col-4';
             break;
           case 'twoCol':
-            this.gridClass = 'col-6'; // 2 columns
+            this.gridClass = 'col-6'; 
             break;
           case 'lines':
-            this.gridClass = 'col-12'; // Full-width lines
+            this.gridClass = 'col-12'; 
             break;
           default:
-            this.gridClass = ''; // Default
+            this.gridClass = ''; 
         }
+        console.log('Updated gridClass:', this.gridClass);
+
       }
     }
 
-    applyChanges(){
+    async applyChanges(){
       this.updateGrid()
+      if (this.dataFetcher) {
+        this.isLoading = true
+        try{
+          this.Tabledata = await this.dataFetcher(this.filters,this.currentPage,this.pageSize!,this.sortFilter)
+        }catch(error){
+          console.log(error)
+          this.isError = true
+          this.Tabledata = []
+        }finally{
+          this.isLoading = false
+        }
+      }
+      else {
+        if(this.requireCols){
+          this.Tabledata = this.data
+        }
+        this.tableService.updateTotalItems(this.data.length)
+        this.tableService.updateTotalPages(Math.ceil(this.data.length / this.pageSize!))
+        let dataCopy = this.data.slice()
+        if(this.sortFilter){
+          dataCopy = this.tableService.sortTable(dataCopy,this.sortFilter)
+        }
+        if(this.isFilterable){
+          dataCopy = this.tableService.filterTable(dataCopy,this.filters)
+        }
+        this.Tabledata = this.tableService.sliceTable(dataCopy,this.currentPage,this.pageSize!)
+      }
+      console.log(this.Tabledata)
+
     }
+
   }
