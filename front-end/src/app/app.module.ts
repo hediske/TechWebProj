@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductViewLeftComponent } from './product/product-view-left/product-view-left.component';
 import { ProductViewRightComponent } from './product/product-view-right/product-view-right.component';
 import { ProductComponent } from './product/product/product.component';
+import { ROUTING } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductComponent } from './product/product/product.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]
