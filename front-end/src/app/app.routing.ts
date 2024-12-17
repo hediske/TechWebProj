@@ -1,9 +1,11 @@
 import { RouterModule, Routes } from "@angular/router";
-import { ProductComponent } from "./product/product/product.component";
+import { ProductsComponent } from "./products/products.component";
+import { ProductComponent } from "./products/product/product/product.component";
 
 
 const APP_ROUTES : Routes = [
-    {path: 'product', component: ProductComponent}
+    {path: 'products', component: ProductsComponent},
+    {path: 'product/:id', component: ProductComponent}
 ];
 
 export const ROUTING = 
