@@ -3,6 +3,7 @@
   import { FilterService } from '../service/filter.service';
   import { TableService } from './table.service';
 import { combineLatest } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
   @Component({
     selector: 'app-table',
@@ -31,30 +32,45 @@ import { combineLatest } from 'rxjs';
     gridClass : string = ""
 
 
-    constructor(private tableService : TableService) { }
+    constructor(private tableService : TableService , private router: Router, private route: ActivatedRoute) { }
     ngOnInit(): void {
       if (!this.rowTemplate) {
         throw new Error("rowTemplate is required for TableComponent.");
       }
+
+      this.route.queryParams.subscribe((params) => { 
+        const page = parseInt(params['page'], 10);
+        this.currentPage = !isNaN(page) && page > 0 ? page : 1;
+        this.tableService.updateCurrentPage(this.currentPage);
+        this.applyChanges();
+      })
+
+
       combineLatest([
         this.tableService.pageSizeObservable$,
         this.tableService.sortObservable$,
-      ]).subscribe(   ([pageSize, currentPage]) => {    
-         // this.sortInterface = sort;
+      ]).subscribe( ([pageSize]) => {    
         this.pageSize = pageSize;
-        this.tableService.updateCurrentPage(1);
         this.applyChanges();}
       );
+
       combineLatest([
         this.tableService.gridObservable$,
         this.tableService.currentPageObservable$
       ]).subscribe(([grid, currentPage]) => {
         this.grid = grid;
         this.currentPage = currentPage || 1;
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { page: this.currentPage },
+          queryParamsHandling:'merge'
+        })
         this.applyChanges();
       });
       this.applyChanges()
     }
+
+
 
     updateGrid(){
       if (this.grid) {
