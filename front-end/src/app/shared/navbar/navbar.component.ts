@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit {
 
   navLinks : navLink[] | undefined;
   searchValue : string | undefined = undefined;
-  isLoggedIn :boolean = false;
+  isLoggedIn: boolean = false;
+  isUser: boolean = false;
   imgUrl: string = '';
   
   
@@ -31,6 +32,12 @@ export class NavbarComponent implements OnInit {
     if (this.authService.isLoggedIn()){
       this.isLoggedIn = true;
       this.imgUrl = this.userService.getAvatar();
+      if(this.authService.getUserRole() === 'user'){
+        this.isUser = true;
+      }
+      else {
+        this.isUser = false;
+      }
     }
   }
 

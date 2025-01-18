@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   getAvatar(): string {
-    throw new Error('Method not implemented.');
+    return '';
   }
 
   constructor() { }

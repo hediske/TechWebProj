@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-
+  getUserRole() {
+    return 'admin';
+  }
 
   register = () =>{
 
@@ -16,11 +18,10 @@ export class AuthService {
 
   logout = () => {
 
-
   }
 
   isLoggedIn : () => boolean = () => {
-    return false;
+    return true;
     //TODO: to implement later
   }
 

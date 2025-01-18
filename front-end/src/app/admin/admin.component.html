@@ -1,0 +1,24 @@
+<div class="admin-layout">
+    
+    <aside class="sidebar">
+        <img  [src]="'assets/images/logo.png'" class="logo " alt="logo" class="logo">
+        <ul class="pt-4 ">
+
+            <li *ngFor="let item of items" >
+                <a class="d-flex flex-column gap-2 align-items-center  justify-content-center " [routerLink]="item.link"
+                    routerLinkActive="active" (click)="setPanel(item.name)">
+                    <img [src]="item.logo" class="logo-side" alt="">
+                   {{item.name}}
+                </a>
+            </li>
+
+        </ul>
+    </aside>
+    <div class="main">
+        <app-navbar-admin [title]="panel" ></app-navbar-admin>
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+
+</div>

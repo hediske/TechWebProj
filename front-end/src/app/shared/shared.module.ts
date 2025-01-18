@@ -7,10 +7,11 @@ import { FormsModule } from '@angular/forms';
 import { UserModule } from '../user/user.module';
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent    
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,8 @@ import { UserModule } from '../user/user.module';
   ],
   exports:[
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    
   ]
 })
 export class SharedModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { footerLink, footerLinks } from 'src/assets/data/footerlinks';
+import { AuthService } from '../../user/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,9 +9,28 @@ import { footerLink, footerLinks } from 'src/assets/data/footerlinks';
 })
 export class FooterComponent implements OnInit {
   
+  constructor(private authService : AuthService){}
+
   footerLinks : footerLink[] | undefined = undefined;
   anio = new Date().getFullYear();
+
+  isLoggedIn: boolean = false;
+  isUser: boolean = false;
   
+
+  checkLogin(){
+    if (this.authService.isLoggedIn()){
+      this.isLoggedIn = true;
+      if(this.authService.getUserRole() === 'user'){
+        this.isUser = true;
+      }
+      else {
+        this.isUser = false;
+      }
+    }
+  }
+
+
   footerCards : string[] = [
     "american-express.svg",
     "discover.svg",
@@ -28,6 +48,7 @@ export class FooterComponent implements OnInit {
   
   ngOnInit(): void {
     this.footerLinks = footerLinks
+    this.checkLogin()
   }
 
 }
