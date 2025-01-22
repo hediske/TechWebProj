@@ -6,5 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
-
+  data = [
+    { name: 'John Doe', email: 'john@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+    { name: 'Jane Smith', email: 'jane@example.com' },
+  ];
 }

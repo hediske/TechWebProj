@@ -1,4 +1,22 @@
 
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-table [cardTemplate]="userCardTemplate" [rowTemplate]="userLineTemplate" [data]="data"></app-table>
+<!-- <app-footer></app-footer> -->
+<ng-template #userCardTemplate let-item>
+    <span class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{ item.email }}</p>
+        <button class="btn btn-primary">View Profile</button>
+      </div>
+    </span>
+  </ng-template>
+
+
+  <ng-template #userLineTemplate let-item>
+    <div class="row">
+        <h5 class="">{{ item.name }}</h5>
+        <p class="">{{ item.email }}</p>
+    </div>
+  </ng-template>

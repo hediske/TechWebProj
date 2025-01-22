@@ -12,6 +12,7 @@ import { ProductViewLeftComponent } from './products/product/product-view-left/p
 import { ProductViewRightComponent } from './products/product/product-view-right/product-view-right.component';
 
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutModule } from "./main-layout/main-layout.module";
 @NgModule({
     declarations: [
@@ -21,15 +22,18 @@ import { MainLayoutModule } from "./main-layout/main-layout.module";
         ProductViewRightComponent,
         ProductsComponent
     ],
-    providers: [],
-    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ROUTING,
         RouterModule,
         HttpClientModule,
-        MainLayoutModule
-    ]
+        MainLayoutModule,
+        MainLayoutModule,
+        CommonModule,
+        BrowserAnimationsModule
+  ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -22,11 +22,11 @@
 
 
 :root {
-    --main-color : black;
+    --main-color : #232323;
     --box-color :   #F6F6F6;
     --breadcrumb--color : #999999;
     --text-color: #525252;
-
+    --font-body-size: 12px
     
 }
 
@@ -168,3 +168,7 @@ body{
 .hidden{
     display: none;
 }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
