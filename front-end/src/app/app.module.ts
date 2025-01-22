@@ -12,22 +12,24 @@ import { ProductViewLeftComponent } from './products/product/product-view-left/p
 import { ProductViewRightComponent } from './products/product/product-view-right/product-view-right.component';
 
 import { CommonModule } from '@angular/common';
+import { MainLayoutModule } from "./main-layout/main-layout.module";
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductComponent,
-    ProductViewLeftComponent,
-    ProductViewRightComponent,
-    ProductsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ROUTING,
-    RouterModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ProductComponent,
+        ProductViewLeftComponent,
+        ProductViewRightComponent,
+        ProductsComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ROUTING,
+        RouterModule,
+        HttpClientModule,
+        MainLayoutModule
+    ]
 })
 export class AppModule { }
