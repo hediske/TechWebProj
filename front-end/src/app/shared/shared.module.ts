@@ -33,7 +33,8 @@ import { PaginatorComponent } from './table/paginator/paginator.component';
   ],
   exports:[
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TableComponent,
   ]
 })
 export class SharedModule { }

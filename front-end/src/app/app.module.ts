@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ROUTING } from './app.routing';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import { ProductsComponent } from './products/products.component';
@@ -25,10 +24,10 @@ import { MainLayoutModule } from "./main-layout/main-layout.module";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        ROUTING,
         RouterModule,
         HttpClientModule,
         MainLayoutModule,
+
         MainLayoutModule,
         CommonModule,
         BrowserAnimationsModule

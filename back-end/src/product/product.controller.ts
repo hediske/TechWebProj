@@ -17,9 +17,10 @@ export class ProductController {
     // Collect all products
     @Get()
     async getAllProducts(): Promise<ProductEntity[]> {
-        return await this.productService.getProducts();
+        return (await this.productService.getProducts()).filter(product => !product.archived);
     }    
 
+    
     @Get(':id')
     async getProductById(
         @Param('id', ParseIntPipe) id: number

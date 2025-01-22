@@ -1,11 +1,13 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
+
+// stock , archived , 
 @Entity('product')
 export class ProductEntity {
 
     @PrimaryColumn()
     id: number
-
+ 
     @Column()
     name: string
 
@@ -13,7 +15,10 @@ export class ProductEntity {
     brand: string
 
     @Column()
-    availability: string
+    stock: number
+
+    @Column()
+    archived: boolean
 
     @Column()
     type: string
@@ -26,4 +31,9 @@ export class ProductEntity {
 
     @Column()
     imageURL: string
+
+    get availability(): boolean {
+        return this.stock > 0 ? true : false;       
+    }
+
 }
