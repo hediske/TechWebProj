@@ -15,8 +15,8 @@ export class ProductComponent {
   relatedProducts: Product[] = [];
 
   constructor(
-    private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private readonly productService: ProductService,
+    private readonly activatedRoute: ActivatedRoute
   ) { }
   
   ngOnInit(): void {
