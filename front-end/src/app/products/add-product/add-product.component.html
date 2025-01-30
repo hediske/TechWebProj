@@ -1,0 +1,78 @@
+    <h2 class="container text-center titre fst-italic" [ngStyle]="{ 'color': '#c8b59e' }">- Add a new product -</h2>
+    <form #fromulaire="ngForm" class="row g-3 formulaire bg-opacity-75 shadow p-3 mb-5 bg-body rounded">
+        <div class="mb-3">
+            <label for="name" class="form-label fs-5 fw-bolder">Name</label>
+            <input #name="ngModel" type="text" class="form-control" ngModel id="name" name="name" 
+            required maxlength="100"
+            [ngClass]="{'is-valid': name.valid && name.touched, 'is-invalid': name.invalid && name.touched}">
+            <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="name.invalid && name.touched">
+                Please mention a name.
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="brand" class="form-label fs-5 fw-bolder">Brand</label>
+            <input #brand="ngModel" type="text" class="form-control" ngModel id="brand" name="brand" 
+            required max="50"
+            [ngClass]="{'is-valid': brand.valid && brand.touched, 'is-invalid': brand.invalid && brand.touched}">
+            <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="brand.invalid && brand.touched">
+                Please choose a brand.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label fs-5 fw-bolder">Type</label>
+            <input #type="ngModel" type="text" class="form-control" ngModel id="type" name="type" 
+            required maxlength="50"
+            [ngClass]="{'is-valid': type.valid && type.touched, 'is-invalid': type.invalid && type.touched}">
+            <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="type.invalid && type.touched">
+                Please choose a type.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label fs-5 fw-bolder">Price</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <span class="input-group-text">0.00</span>
+                <input #price="ngModel" type="text" class="form-control" ngModel id="price" name="price" 
+                required min="0" pattern="^\d+(\.\d{1,2})?$"
+                [ngClass]="{'is-valid': price.valid && price.touched, 'is-invalid': price.invalid && (price.touched || price.dirty)}"
+                >
+                <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="price.invalid && price.touched">
+                    Price is required.
+                </div>
+                <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="price.invalid && price.dirty">
+                    Please enter a valid price (e.g., 15.50).
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label fs-5 fw-bolder">Description</label>
+            <textarea class="form-control" id="description" ngModel rows="3" name="description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label fs-5 fw-bolder">Stock</label>
+            <input #stock="ngModel" type="text" class="form-control" ngModel id="stock" name="stock" 
+            required min="0" pattern="^[1-9][0-9]*$"
+            [ngClass]="{'is-valid': stock.valid && stock.touched, 'is-invalid': stock.invalid && (stock.touched || stock.dirty)}">
+            <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="stock.invalid && stock.touched">
+                Stock is required.
+            </div>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback" *ngIf="stock.invalid && stock.dirty">
+                Stock must be positive number.
+            </div>
+        </div>
+        <div class="flex-fill">
+            <label for="archived" class="form-label fs-5 fw-bolder">Archived</label>
+            <select id= "archived" class="form-select" ngModel aria-label="Default select example" name="archived">
+                <option class="text-danger">false</option>
+                <option class="text-success">true</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="images" class="form-label fs-5 fw-bolder">Choose images</label>
+            <input type="file" (change)="onFileSelected($event)" multiple name="images" id="images" class="form-control"/>
+        </div>
+        <div class="container text-center envoier" [ngStyle]="{ 'color': '#c8b59e' }">
+            <button [disabled]="fromulaire.invalid" (click)="addProduct(fromulaire)" class="btn btn-outline-dark" type="submit">Confirm product creation</button>
+        </div>
+    </form>
