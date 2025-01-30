@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product/product.component';
 import { ProductViewLeftComponent } from './products/product/product-view-left/product-view-left.component';
@@ -13,6 +13,8 @@ import { ProductViewRightComponent } from './products/product/product-view-right
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutModule } from "./main-layout/main-layout.module";
+import { AuthInterceptor } from './user/interceptors/auth.interceptor';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -31,8 +33,10 @@ import { MainLayoutModule } from "./main-layout/main-layout.module";
         MainLayoutModule,
         CommonModule,
         BrowserAnimationsModule
-  ],
-    providers: [],
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule { }
