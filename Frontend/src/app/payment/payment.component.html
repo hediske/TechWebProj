@@ -1,23 +1,24 @@
-  
-
-        <!-- Bloc droit (Formulaire de paiement) -->
-        <div class="col-md-9 mb-3 mx-auto mt-5">
-            <div class="payment-container bg-white">
-                <h2>Payment Details</h2>
-                <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group">
-                        <label for="cardNumber">Card Number</label>
-                        <input id="cardNumber" formControlName="cardNumber" placeholder="4242 4242 4242 4242" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="expiryDate">Expiry Date</label>
-                        <input id="expiryDate" formControlName="expiryDate" placeholder="MM/YY" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="cvc">CVC</label>
-                        <input id="cvc" formControlName="cvc" placeholder="123" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid">Pay Now</button>
-                </form>
+<!-- Payment Form -->
+<div class="col-md-9 mb-3 mx-auto mt-5">
+    <div class="payment-container bg-white">
+        <h2>Payment Details</h2>
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input id="cardNumber" formControlName="cardNumber" placeholder="4242 4242 4242 4242" class="form-control">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input id="expiryDate" formControlName="expiryDate" placeholder="MM/YY" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cvc">CVC</label>
+                <input id="cvc" formControlName="cvc" placeholder="123" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid">Pay Now</button>
+        </form>
+
+        <!-- Payment Validated Message -->
+        <p *ngIf="paymentValidated" style="color: green; margin-top: 10px;">Payment Validated</p>
+    </div>
+</div>

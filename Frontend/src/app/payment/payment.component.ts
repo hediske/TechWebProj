@@ -11,6 +11,7 @@ export class PaymentComponent implements OnInit {
   paymentForm: FormGroup;
   stripe: Stripe | null = null;
   cardElement: StripeCardElement | null = null;
+  paymentValidated = false;
 
   constructor(private fb: FormBuilder) {
     this.paymentForm = this.fb.group({
@@ -33,15 +34,26 @@ export class PaymentComponent implements OnInit {
     if (!this.stripe || !this.cardElement) {
       return;
     }
-
+  
+    // Create a token using Stripe's card element
     const { token, error } = await this.stripe.createToken(this.cardElement);
-
+  
     if (error) {
       console.error(error);
     } else {
-      // Send the token to your server to process the payment
-      console.log(token);
-      // You can now send this token to your backend to complete the payment
+      // Process the payment on the server (this is a mock for now)
+      console.log('Token:', token);
+  
+      // After a successful token creation, show "Payment Validated" message
+      if (this.paymentForm.valid) {
+        this.paymentValidated = true;
+  
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          this.paymentValidated = false;
+        }, 3000);
+      }
     }
   }
+  
 }
