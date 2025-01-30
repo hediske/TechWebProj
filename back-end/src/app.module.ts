@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PaymentController } from './payment/payment.controller';
+import { PaymentService } from './payment/payment.service';
+import { ConfigModule } from '@nestjs/config';
+import { PaymentModule } from './payment/payment.module'; // Ensure this import is correct
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [PaymentModule], // Ensure PaymentModule is imported
 })
-export class AppModule {}
+export class AppModule {} // Ensure AppModule is exported

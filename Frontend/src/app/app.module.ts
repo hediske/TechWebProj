@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms'; // <-- Add this import
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PaymentComponent } from './payment/payment.component'; // <-- Ensure your component is imported
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaymentComponent // <-- Ensure your component is declared
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ReactiveFormsModule // <-- Add ReactiveFormsModule here
   ],
-  providers: [
-    provideClientHydration()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
