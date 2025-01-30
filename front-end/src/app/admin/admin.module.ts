@@ -9,7 +9,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -17,12 +18,14 @@ import { SharedModule } from '../shared/shared.module';
     UsersComponent,
     OrdersComponent,
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

@@ -55,4 +55,9 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.tokenSubject.value !== null;
   }
+
+  register(name: string, email: string, password: string, role: string): Observable<any> {
+    const url = ''; // Replace with api mte3 add 
+    return this.http.post<any>(url, { name, email, password, role });
+  }
 }
