@@ -14,14 +14,16 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutModule } from "./main-layout/main-layout.module";
 import { AuthInterceptor } from './user/interceptors/auth.interceptor';
-
+import { LoggingComponent } from './admin/logging/logging.component';  // Import LoggingComponent
+import { FormsModule } from '@angular/forms';  // <-- Import FormsModule here
 @NgModule({
     declarations: [
         AppComponent,
         ProductComponent,
         ProductViewLeftComponent,
         ProductViewRightComponent,
-        ProductsComponent
+        ProductsComponent,
+        LoggingComponent  
     ],
     imports: [
         BrowserModule,
@@ -32,7 +34,8 @@ import { AuthInterceptor } from './user/interceptors/auth.interceptor';
 
         MainLayoutModule,
         CommonModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
