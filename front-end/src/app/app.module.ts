@@ -21,7 +21,8 @@ import { MainLayoutModule } from "./main-layout/main-layout.module";
         ProductComponent,
         ProductViewLeftComponent,
         ProductViewRightComponent,
-        ProductsComponent
+        ProductsComponent,
+        AddProductComponent
     ],
     imports: [
         BrowserModule,
@@ -29,7 +30,8 @@ import { MainLayoutModule } from "./main-layout/main-layout.module";
         RouterModule,
         HttpClientModule,
         MainLayoutModule,
-
+        FormsModule,
+        ReactiveFormsModule,
         MainLayoutModule,
         CommonModule,
         BrowserAnimationsModule

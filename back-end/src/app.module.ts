@@ -9,8 +9,6 @@ import { User } from './user/user.entity';
 import { TokenModule } from './token/token.module';
 import { Token } from './token/token.entity';
 import { AuthModule } from './auth/auth.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
 
 import * as dotenv from 'dotenv';
