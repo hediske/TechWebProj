@@ -1,1 +1,24 @@
-<p>users works!</p>
+<app-table [allDataLoaded]="true" [data]="users" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
+    
+</app-table>
+
+
+<!-- Row Template -->
+<ng-template #rowTemplate let-item>
+    <div class="row">
+        <h5 class="">{{ item.name }}</h5>
+        <p class="">{{ item.email }}</p>
+    </div>
+</ng-template>
+
+
+<!-- Card Template -->
+<ng-template #userCardTemplate let-item>
+    <span class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{ item.email }}</p>
+        <button class="btn btn-primary">View Profile</button>
+      </div>
+    </span>
+  </ng-template>

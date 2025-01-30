@@ -1,15 +1,18 @@
 .button{
-
     border: 1px solid;
-    /* padding: 0.2em 0.3em;    */
+    height:50px;
+    width:50px;
     font-size : 1.6em;
     color: #525252;
     margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
 
 }
 
 .notSelected{
-    color:#808080;
+    background-color:#dfdfdf;
     border-color: #808080;
 }
 
@@ -18,18 +21,6 @@
     border-color: #232323;
 }
 
-i[class*="fa-tally-2"]{
-    margin-right: -7px;
-    
-}
-
-i[class*="fa-tally-3"]{
-    margin-right: -4px;
-}
-
-i[class*="fa-bars"]{
-    padding: 0.1em 0.2em;
-}
 
 .label{
     font-size: var(--font-body-size);
@@ -45,4 +36,15 @@ mat-form-field{
     width: 100px;
     height: 80px;
     transform: scale(0.7);
+}
+
+.icon{
+    height:40px;
+    width:40px;
+}
+
+.icon2{
+    height:25px;
+    width:25px;
+    margin: 8px;
 }

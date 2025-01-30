@@ -3,16 +3,17 @@
         <label class="label m-4">View As</label>
         <span>
             <span class="pointer button first" (click)="setGridType('lines')" [ngClass]="selected === 'lines' ? 'selected' : 'notSelected'">
-                <i class="fa-solid fa-bars"></i>
+                <img class="icon2" src="https://www.iconarchive.com/download/i111946/fa-team/fontawesome/FontAwesome-Bars.1024.png">
             </span>
             <span class="pointer button" (click)="setGridType('twoCol')" [ngClass]="selected === 'twoCol' ? 'selected' : 'notSelected'">
-                <i class="fa-solid fa-tally-2"></i>
+                <!-- <i class="fa-solid fa-tally-2"></i> -->
+                <img class="icon" src="https://www.iconarchive.com/download/i128017/pictogrammers/material/tally-mark-2.1024.png" />
             </span>
             <span class="pointer button " (click)="setGridType('threeCol')" [ngClass]="selected === 'threeCol' ? 'selected' : 'notSelected'">
-                <i class="fa-solid fa-tally-3"></i>
+                <img class="icon" src="https://www.iconarchive.com/download/i128017/pictogrammers/material/tally-mark-3.1024.png" />
             </span>
             <span class="pointer button " (click)="setGridType('foorCol')" [ngClass]="selected === 'foorCol' ? 'selected' : 'notSelected'">
-                <i class="fa-solid fa-tally-4"></i>
+                <img class="icon" src="https://www.iconarchive.com/download/i128017/pictogrammers/material/tally-mark-4.1024.png" />
             </span>
         </span>
 

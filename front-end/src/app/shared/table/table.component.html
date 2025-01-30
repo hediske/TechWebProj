@@ -5,6 +5,11 @@
     <app-filter-section></app-filter-section>   
 </section>
 <section class="d-flex flex-wrap container-fluid ">
+    <section class="" *ngIf="grid === 'lines' && requireCols" >
+        <div *ngFor="let item of columns" [ngClass]="gridClass" class="mb-3">
+            <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item }"></ng-container>
+        </div>
+    </section> 
     <div *ngFor="let item of Tabledata" [ngClass]="gridClass" class="mb-3">
         <ng-container *ngIf="isCustomizable && grid === 'lines'; else cardView">
             <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item }"></ng-container>
