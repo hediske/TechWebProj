@@ -32,7 +32,11 @@ dotenv.config();
       entities: [ProductEntity, ImageEntity],
       synchronize: true,
     }),
-    ProductModule
+    ProductModule,
+    UserModule,
+    AuthModule,
+    TokenModule,
+    EnumModule
   ],
   controllers: [AppController],
   providers: [AppService],

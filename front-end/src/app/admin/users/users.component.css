@@ -1,0 +1,31 @@
+.element:hover{
+    background-color: #f5f5f5;
+}
+.loader {
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.modal-navbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.modal-navbar button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.modal-navbar .active {
+    font-weight: bold;
+    border-bottom: 2px solid blue;
+}

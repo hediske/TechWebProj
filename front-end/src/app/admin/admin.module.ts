@@ -10,7 +10,8 @@ import { LoggingComponent } from './logging/logging.component';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './modal/modal.service';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -19,12 +20,14 @@ import { SharedModule } from '../shared/shared.module';
     OrdersComponent,
     LoggingComponent,
     ProductsComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     AdminRoutingModule
-  ]
+  ],
+  providers: [ModalService]
 })
 export class AdminModule { }

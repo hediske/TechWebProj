@@ -1,14 +1,20 @@
-<app-table [allDataLoaded]="true" [data]="users" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
+<app-table [allDataLoaded]="true" [columns]="columns" [data]="users" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
     
 </app-table>
 
 
 <!-- Row Template -->
 <ng-template #rowTemplate let-item>
-    <div class="row">
-        <h5 class="">{{ item.name }}</h5>
-        <p class="">{{ item.email }}</p>
-    </div>
+    <span (click)="addModal(item.id, userModalTemplate)" class="justify-content-between w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
+        <h5 class="flex-grow-1 text-center">{{ item.id }}</h5>
+        <p class="flex-grow-1 text-center">{{ item.name }}</p>
+        <img class="flex-grow-1 text-center" src="{{ item.avatar }}" alt="avatar"  height="150">
+        <p class="flex-grow-1 text-center">{{ item.email }}</p>
+        <p class="flex-grow-1 text-center">{{ item.role }}</p>
+        <p class="flex-grow-1 text-center">{{ item.status }}</p>
+        <p class="flex-grow-1 text-center">{{ item.created_at | date }}</p>
+        <p class="flex-grow-1 text-center">{{ item.updated_at  | date}}</p>
+    </span>
 </ng-template>
 
 
@@ -22,3 +28,41 @@
       </div>
     </span>
   </ng-template>
+
+
+
+<!-- Modal template -->
+<ng-template #userModalTemplate >
+  
+
+          <!-- Loader -->
+          <div *ngIf="loading" class="loader">
+              <p>Loading user data...</p>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="error" class="error-message">
+              <p>{{ error }}</p>
+          </div>
+
+          <!-- Tabs -->
+          <nav class="modal-navbar">
+              <button (click)="setActiveTab('user')" [class.active]="activeTab === 'user'">User</button>
+              <button (click)="setActiveTab('orders')" [class.active]="activeTab === 'orders'">Orders</button>
+              <button (click)="setActiveTab('contact')" [class.active]="activeTab === 'contact'">Contact</button>
+          </nav>
+
+          <!-- Tab Content -->
+          <div *ngIf="activeTab === 'user'">
+              <p>User</p>
+          </div>
+          <div *ngIf="activeTab === 'orders'">
+              <p>Orders</p>
+          </div>
+          <div *ngIf="activeTab === 'contact'">
+              <p>Contact</p>
+          </div>
+
+
+
+</ng-template>

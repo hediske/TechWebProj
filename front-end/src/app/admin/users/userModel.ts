@@ -12,6 +12,11 @@ export const userColumns : columnInterface[]  = [
         "type" : columnType.String
     },
     {
+        "key" : "avatar",
+        "name" : "Avatar", 
+        "type" : columnType.String
+    },
+    {
         "key" : "email",
         "name" : "Email",
         "type" :  columnType.String
@@ -43,6 +48,7 @@ export const userColumns : columnInterface[]  = [
 export interface UserAdminInterface {
     id: number
     name: string
+    avatar:string
     email: string
     role: string
     status: string
@@ -54,6 +60,7 @@ export const userAdminData: UserAdminInterface[] = [
     {
         id: 1,
         name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
         email: "HrGpO@example.com",
         role: "admin",
         status: "active",
@@ -64,6 +71,7 @@ export const userAdminData: UserAdminInterface[] = [
     {
         id: 1,
         name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
         email: "HrGpO@example.com",
         role: "user",
         status: "active",
@@ -74,6 +82,7 @@ export const userAdminData: UserAdminInterface[] = [
     {
         id: 1,
         name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
         email: "HrGpO@example.com",
         role: "admin",
         status: "active",
@@ -84,6 +93,48 @@ export const userAdminData: UserAdminInterface[] = [
     {
         id: 1,
         name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
+        email: "HrGpO@example.com",
+        role: "admin",
+        status: "active",
+        created_at: new Date(),
+        updated_at: new Date()
+    },
+    {
+        id: 1,
+        name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
+        email: "HrGpO@example.com",
+        role: "admin",
+        status: "active",
+        created_at: new Date(),
+        updated_at: new Date()
+    },
+    {
+        id: 1,
+        name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
+        email: "HrGpO@example.com",
+        role: "admin",
+        status: "active",
+        created_at: new Date(),
+        updated_at: new Date()
+    },
+
+    {
+        id: 1,
+        name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
+        email: "HrGpO@example.com",
+        role: "admin",
+        status: "active",
+        created_at: new Date(),
+        updated_at: new Date()
+    },
+    {
+        id: 1,
+        name: "John Doe",
+        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
         email: "HrGpO@example.com",
         role: "admin",
         status: "active",
