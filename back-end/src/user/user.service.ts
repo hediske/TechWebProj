@@ -37,6 +37,7 @@ export class UserService {
             return this.toReturnUserDto(savedUser);
         } catch (error) {
             //zid error table fil db to add it + do we need a rollback ? 
+            // console.log(error);
             throw new InternalServerErrorException('Failed to create user');
         }
     }

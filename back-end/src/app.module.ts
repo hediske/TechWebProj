@@ -29,7 +29,7 @@ dotenv.config();
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [ProductEntity, ImageEntity],
+      entities: [ProductEntity, ImageEntity, User, Token],
       synchronize: true,
     }),
     ProductModule,

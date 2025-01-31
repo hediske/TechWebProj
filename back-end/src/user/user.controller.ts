@@ -42,8 +42,8 @@ export class UserController {
     return this.userService.getUserById(id);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(UserRole.ADMIN)
   @Post()
   @ApiOperation({ summary: 'create user' })
   @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })
