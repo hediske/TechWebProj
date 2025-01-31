@@ -32,7 +32,8 @@ export class AuthService {
     try {
       const payload: JwtPayload = { email: user.email, sub: user.id, role: user.role };
       return {
-        access_token: this.jwtService.sign(payload),
+        token: this.jwtService.sign(payload),
+        role: user.role
       };
     } catch (error) {
       throw new InternalServerErrorException('failed to login');
