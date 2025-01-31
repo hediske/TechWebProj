@@ -43,7 +43,6 @@ export class UserController {
     return this.userService.getUserById(id);
   }
 
-
   @Post()
   @ApiOperation({ summary: 'create user' })
   @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })

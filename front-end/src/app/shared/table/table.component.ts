@@ -85,7 +85,7 @@ import { ActivatedRoute, Router } from '@angular/router';
             this.gridClass = 'col-6'; 
             break;
           case 'lines':
-            this.gridClass = 'col-12'; 
+            this.gridClass = 'w-100'; 
             break;
           default:
             this.gridClass = ''; 
@@ -110,9 +110,11 @@ import { ActivatedRoute, Router } from '@angular/router';
         }
       }
       else {
-        if(this.requireCols){
-          this.Tabledata = this.data
-        }
+        // if(this.requireCols){
+        //   this.Tabledata = this.data
+        // }
+        console.log(this.columns)
+        console.log(this.data)
         this.tableService.updateTotalItems(this.data.length)
         this.tableService.updateTotalPages(Math.ceil(this.data.length / this.pageSize!))
         let dataCopy = this.data.slice()

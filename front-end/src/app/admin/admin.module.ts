@@ -11,6 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './modal/modal.service';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -19,13 +21,15 @@ import { FormsModule } from '@angular/forms';
     OrdersComponent,
     ProductsComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     AdminRoutingModule,
     FormsModule
-  ]
+  ],
+  providers: [ModalService]
 })
 export class AdminModule { }

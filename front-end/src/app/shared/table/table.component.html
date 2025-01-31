@@ -4,13 +4,15 @@
 <section *ngIf="isFilterable" class="container">
     <app-filter-section></app-filter-section>   
 </section>
-<section class="d-flex flex-wrap container-fluid ">
-    <section class="" *ngIf="grid === 'lines' && requireCols" >
-        <div *ngFor="let item of columns" [ngClass]="gridClass" class="mb-3">
-            <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item }"></ng-container>
-        </div>
-    </section> 
-    <div *ngFor="let item of Tabledata" [ngClass]="gridClass" class="mb-3">
+<section class="" *ngIf="grid === 'lines' && requireCols" class=" d-flex w-100 container-fluid justify-content-between " >
+    <div *ngFor="let item of columns" class="mb-3 flex-grow-1 text-center py-4 mt-3 ">
+       <span class="title">
+            {{item.name}}
+       </span> 
+    </div>
+</section> 
+<section class="d-flex container-fluid flex-wrap justify-content-between w-100">
+    <div *ngFor="let item of Tabledata" [ngClass]="gridClass" class="mb-3 " >
         <ng-container *ngIf="isCustomizable && grid === 'lines'; else cardView">
             <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item }"></ng-container>
           </ng-container>

@@ -22,5 +22,16 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.link}/${id}`)
   }
+
+  getRelatedProductsByType(productType: string, excludeProductId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(
+        `${this.link}/related?type=${productType}&excludeId=${excludeProductId}`
+    );
+  }
+
+
+  addProduct(formData: FormData):Observable<any> {
+    return this.http.post(`${this.link}`, formData);
+}
   
 }

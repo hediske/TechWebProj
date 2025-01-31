@@ -1,0 +1,29 @@
+.formulaire{
+  margin-right: 100px;
+  margin-left: 100px;
+  padding-bottom: 50px;
+}
+
+.envoier {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.titre {
+  margin-bottom: 50px;
+}
+
+.chaise {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+:host {
+  display: block;
+  min-height: 100vh; /* Assure que le fond couvre toute la hauteur de la page */
+  background-image: url('images/bg1.jpg'); /* Chemin de votre image */
+  background-size: cover; /* Ajuste l'image pour couvrir toute la page */
+  background-position: center; /* Centrer l'image */
+  background-repeat: no-repeat; /* Empêche la répétition */
+  padding: 50px;
+}

@@ -22,6 +22,7 @@ export class ProductsComponent {
     this.productService.getProducts().subscribe(
       (products) => {
         this.products = products;
+        console.log(this.products)
       },
       (error) => {
         alert('API access problem');

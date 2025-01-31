@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as dotenv from 'dotenv';
+import { join } from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import * as express from 'express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
@@ -31,6 +35,10 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
-  await app.listen(3000);
+
+   // Configurer le dossier "uploads" comme dossier statique
+   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+
+  await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();
