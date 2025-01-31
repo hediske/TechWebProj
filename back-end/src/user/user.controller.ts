@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, ReturnUserDto, UpdateUserDto } from './dto/user.dto';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './user.entity';
 import { RolesGuard } from '../auth/roles.guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guards';
@@ -10,6 +10,7 @@ import { Roles } from 'src/auth/roles.decorator';
 
 
 @ApiTags('users') // sawgger tag
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
@@ -38,12 +39,11 @@ export class UserController {
   @Get(':id')
   @ApiOperation({ summary: 'user by id' })
   @ApiResponse({ status: 200, description: 'success', type: User })
-  async getUserById(@Param('id') id: number): Promise<ReturnUserDto> {
+  async getUserById(@Param('id') id: number, @Req() req): Promise<ReturnUserDto> {
     return this.userService.getUserById(id);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN)
+
   @Post()
   @ApiOperation({ summary: 'create user' })
   @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })
@@ -59,7 +59,7 @@ export class UserController {
   async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<ReturnUserDto> {
     return this.userService.updateUser(id, updateUserDto);
   }
-  
+
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Delete(':id')
