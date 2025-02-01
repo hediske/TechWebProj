@@ -16,7 +16,6 @@ import { ProductEntity } from './product/entity/product.entity/product.entity';
 import { ImageEntity } from './product/entity/image.entity/image.entity';
 
 dotenv.config();
-
 @Module({
   imports: [
     ConfigModule.forRoot({
