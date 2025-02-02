@@ -17,7 +17,8 @@ export class LoggingComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
-        this.router.navigate(['/admin']);
+        const role = this.authService.getUserRole();
+        role=='admin' ? this.router.navigate(['/admin']) : this.router.navigate(['/products']) 
       },
       (error) => {
         this.errorMessage = 'Invalid email or password';

@@ -6,6 +6,7 @@ import { ProductsComponent } from './products/products.component';
 import { AuthGuard } from './user/guards/auth.guard';
 import { LoggingComponent } from './admin/logging/logging.component';
 import { RegisterComponent } from './admin/register/register.component';
+import { AddProductComponent } from './products/add-product/add-product.component';
 
 const routes: Routes = [
   { path: 'logging', component: LoggingComponent },
@@ -13,16 +14,16 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    // canActivate: [AuthGuard], (just bech manb9ach na3ml login kol mara)
+    canActivate: [AuthGuard],
     data: { role: 'admin' }
   },
-  { path: 'product/:id', component: ProductComponent },
-  { path: 'products', component: ProductsComponent },
   {
     path: 'access-denied',
     redirectTo: 'access-denied.html'
   },
-
+  {path: 'products', component: ProductsComponent},
+  {path: 'products/add', component: AddProductComponent, canActivate: [authGuard] , data: { role: 'admin' }},
+  {path: 'product/:id', component: ProductComponent},
   {
     path: '**',
     redirectTo: 'logging',

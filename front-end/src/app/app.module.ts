@@ -17,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutModule } from "./main-layout/main-layout.module";
 import { AuthInterceptor } from './user/interceptors/auth.interceptor';
 import { LoggingComponent } from './admin/logging/logging.component';  
-import { FormsModule } from '@angular/forms';  
 @NgModule({
     declarations: [
         AppComponent,

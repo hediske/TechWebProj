@@ -14,13 +14,28 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     const token = localStorage.getItem('token'); // Check if a token exists
 
-    if (token) {
-      // If token exists, allow access to the route
-      return true;
-    } else {
-      // If no token, redirect to login
-      this.router.navigate(['/login']);
+    if (!token) {
+      this.router.navigate(['/logging'], { queryParams: { returnUrl: state.url } });
       return false;
     }
+
+    try {
+      const role = localStorage.getItem('role');
+      const requiredRole = next.data['role']; // Get role from route data
+
+      if (requiredRole && role !== requiredRole) {
+        this.router.navigate(['/unauthorized']); // Redirect if role mismatch
+        return false;
+      }
+
+      return true; // Allow access if token is valid and role matches
+    } catch (error) {
+      localStorage.removeItem('token'); // Remove invalid token
+      this.router.navigate(['/logging']);
+      return false;
+    }
+
+
+
   }
 }
