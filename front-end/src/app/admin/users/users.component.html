@@ -1,33 +1,43 @@
-<app-table [allDataLoaded]="true" [columns]="columns" [data]="users" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
+<app-table [allDataLoaded]="false" [columns]="columns" [dataFetcher]="datafetcher" [data]="users" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
     
 </app-table>
 
 
 <!-- Row Template -->
 <ng-template #rowTemplate let-item>
-    <span (click)="addModal(item.id, userModalTemplate)" class="justify-content-between w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
-        <h5 class="flex-grow-1 text-center">{{ item.id }}</h5>
-        <p class="flex-grow-1 text-center">{{ item.name }}</p>
-        <img class="flex-grow-1 text-center" src="{{ item.avatar }}" alt="avatar"  height="150">
-        <p class="flex-grow-1 text-center">{{ item.email }}</p>
-        <p class="flex-grow-1 text-center">{{ item.role }}</p>
-        <p class="flex-grow-1 text-center">{{ item.status }}</p>
-        <p class="flex-grow-1 text-center">{{ item.created_at | date }}</p>
-        <p class="flex-grow-1 text-center">{{ item.updated_at  | date}}</p>
+    <span  (click)="addModal(item.id, userModalTemplate)" class="justify-content-around  w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
+        <h5 class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.id }}</h5>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.firstName }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.lastName }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.phoneNumber }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.email }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;" > {{item.blocked}}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.role }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.address }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.createdAt | date }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.updatedAt  | date}}</p>
     </span>
 </ng-template>
 
 
 <!-- Card Template -->
 <ng-template #userCardTemplate let-item>
-    <span class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">{{ item.email }}</p>
-        <button class="btn btn-primary">View Profile</button>
-      </div>
-    </span>
-  </ng-template>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">{{ item.firstName }} {{ item.lastName }}</h5>
+        </div>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">{{ item.role }}</h6>
+            <p class="card-text">{{ item.email }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ item.phoneNumber }}</p>
+            <p class="card-text"><strong>Adress:</strong> {{ item.address }}</p>
+            <p class="card-text"><strong>Joined on:</strong> {{ item.createdAt | date }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary" (click)="addModal(item.id, userModalTemplate)">View Profile</button>
+        </div>
+    </div>
+</ng-template>
 
 
 
@@ -53,9 +63,84 @@
           </nav>
 
           <!-- Tab Content -->
-          <div *ngIf="activeTab === 'user'">
-              <p>User</p>
-          </div>
+           <!-- Tab Content -->
+  <!-- User Tab with Form -->
+  <div *ngIf="activeTab === 'user'">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          placeholder="Enter first name" />
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          placeholder="Enter last name" />
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          id="address"
+          type="text"
+          formControlName="address"
+          class="form-control"
+          placeholder="Enter address" />
+      </div>
+
+      <!-- Role (Read-Only) -->
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input
+          id="role"
+          type="text"
+          formControlName="role"
+          class="form-control"
+          readonly />
+      </div>
+
+      <!-- Email (Read-Only) -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          readonly />
+      </div>
+
+      <!-- Phone Number (Read-Only) -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          type="text"
+          formControlName="phoneNumber"
+          class="form-control"
+          readonly />
+      </div>
+
+            <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+
+
+
+        <!-- Orders Tab -->
           <div *ngIf="activeTab === 'orders'">
               <p>Orders</p>
           </div>

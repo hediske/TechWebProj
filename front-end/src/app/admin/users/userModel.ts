@@ -7,13 +7,18 @@ export const userColumns : columnInterface[]  = [
         "type" : columnType.Number
     },
     {
-        "key" : "name",
-        "name" : "Name",
+        "key" : "firstName",
+        "name" : "First Name",
         "type" : columnType.String
     },
     {
-        "key" : "avatar",
-        "name" : "Avatar", 
+        "key" : "lastName",
+        "name" : "Last Name", 
+        "type" : columnType.String
+    },
+    {
+        "key" : "phoneNumber",
+        "name" : "Phone", 
         "type" : columnType.String
     },
     {
@@ -22,13 +27,19 @@ export const userColumns : columnInterface[]  = [
         "type" :  columnType.String
     },
     {
+        "key" : "blocked",
+        "name" : "Blocked", 
+        "type" : columnType.String
+
+    },
+    {
         "key" : "role",
         "name" : "Role",
         "type" : columnType.String
     },
     {
-        "key" : "status",
-        "name" : "Status",
+        "key" : "address",
+        "name" : "Address",
         "type" : columnType.String
     },
     {
@@ -47,8 +58,10 @@ export const userColumns : columnInterface[]  = [
 
 export interface UserAdminInterface {
     id: number
-    name: string
-    avatar:string
+    firstname: string
+    lastname: string
+    phoneNumber: number
+    blocked:boolean
     email: string
     role: string
     status: string
@@ -56,89 +69,89 @@ export interface UserAdminInterface {
     updated_at: Date
 }
 
-export const userAdminData: UserAdminInterface[] = [
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
+// export const userAdminData: UserAdminInterface[] = [
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
 
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "user",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "user",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
 
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
 
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:false,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
 
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    },
-    {
-        id: 1,
-        name: "John Doe",
-        avatar:"https://randomuser.me/api/portraits/men/80.jpg",
-        email: "HrGpO@example.com",
-        role: "admin",
-        status: "active",
-        created_at: new Date(),
-        updated_at: new Date()
-    }
-]
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     },
+//     {
+//         id: 1,
+//         name: "John Doe",
+//         blocked:true,
+//         email: "HrGpO@example.com",
+//         role: "admin",
+//         status: "active",
+//         created_at: new Date(),
+//         updated_at: new Date()
+//     }
+// ]

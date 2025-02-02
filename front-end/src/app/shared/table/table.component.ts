@@ -100,7 +100,10 @@ import { ActivatedRoute, Router } from '@angular/router';
       if (this.dataFetcher) {
         this.isLoading = true
         try{
-          this.Tabledata = await this.dataFetcher(this.filters,this.currentPage,this.pageSize!,this.sortFilter)
+          const result = await this.dataFetcher(this.filters,this.currentPage,this.pageSize!,this.sortFilter)
+          this.Tabledata = result.data
+          this.tableService.updateTotalItems(result.totalItems)
+          this.tableService.updateTotalPages(result.totalPages)
         }catch(error){
           console.log(error)
           this.isError = true

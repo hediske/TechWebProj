@@ -29,3 +29,10 @@
     font-weight: bold;
     border-bottom: 2px solid blue;
 }
+
+.item-cell {
+    flex: 1; 
+    word-wrap: break-word; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
