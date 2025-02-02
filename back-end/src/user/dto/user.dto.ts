@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsEnum, Matches, isNumber, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsEmail, IsEnum, Matches, isNumber, IsNumber, IsOptional, IsBoolean, IsDate } from 'class-validator';
 import { UserRole, UserStatus } from '../../enum/userType';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -78,6 +78,24 @@ export class ReturnUserDto {
   @ApiProperty({ enum: UserStatus })
   @IsEnum(UserStatus)
   status: UserStatus;
+
+
+
+  @ApiProperty()
+  @IsBoolean()
+  blocked: boolean;
+
+  @ApiProperty()
+  @IsDate()
+  createdAt: Date;
+
+
+
+  @ApiProperty()
+  @IsDate()
+  updatedAt: Date;
+
+
 
 }
 export class UpdateUserDto {

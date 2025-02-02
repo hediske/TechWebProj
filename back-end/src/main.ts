@@ -39,6 +39,6 @@ async function bootstrap() {
    // Configurer le dossier "uploads" comme dossier statique
    app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
-  await app.listen(process.env.APP_PORT || 3000);
+  await app.listen(process.env.APP_PORT);
 }
 bootstrap();

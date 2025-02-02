@@ -11,19 +11,20 @@ import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UserModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('SECRET_KEY'),
+        secret: process.env.SECRET_KEY,
         signOptions: { expiresIn: '90m' },
       }),
       inject: [ConfigService],
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy, JwtAuthGuard],
   controllers: [AuthController],
