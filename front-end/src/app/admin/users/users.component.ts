@@ -27,7 +27,7 @@ export class UsersComponent implements  OnInit {
   users : UserAdminInterface[] = []
   columns:  columnInterface[] = []
   userForm!: FormGroup;
-
+  selectedUser : any;
 
 
   ngOnInit(): void {
@@ -57,7 +57,21 @@ export class UsersComponent implements  OnInit {
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
-  addModal(userId: string , template:any) {
+  addModal(userId: string , template:any , user: any) {
+      this.selectedUser = user
+      console.log(user)
+
+
+      if (this.selectedUser) {
+        this.userForm.patchValue({
+          firstName: this.selectedUser.firstName,
+          lastName: this.selectedUser.lastName,
+          address: this.selectedUser.address,
+          role: this.selectedUser.role,
+          email: this.selectedUser.email,
+          phoneNumber: this.selectedUser.phoneNumber
+        });
+      }
       const id = userId + '_' + Date.now();
       this.modalService.registerModal(id, "User Details", template);
   }

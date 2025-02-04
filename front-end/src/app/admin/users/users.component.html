@@ -5,7 +5,7 @@
 
 <!-- Row Template -->
 <ng-template #rowTemplate let-item>
-    <span  (click)="addModal(item.id, userModalTemplate)" class="justify-content-around  w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
+    <span  (click)="addModal(item.id, userModalTemplate,item)" class="justify-content-around  w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
         <h5 class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.id }}</h5>
         <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.firstName }}</p>
         <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.lastName }}</p>
@@ -34,7 +34,7 @@
             <p class="card-text"><strong>Joined on:</strong> {{ item.createdAt | date }}</p>
         </div>
         <div class="card-footer text-center">
-            <button class="btn btn-primary" (click)="addModal(item.id, userModalTemplate)">View Profile</button>
+            <button class="btn btn-primary" (click)="addModal(item.id, userModalTemplate,item)">View Profile</button>
         </div>
     </div>
 </ng-template>
@@ -75,9 +75,10 @@
           type="text"
           formControlName="firstName"
           class="form-control"
-          placeholder="Enter first name" />
+          placeholder="Enter first name"
+          [value]="selectedUser?.firstName" />
       </div>
-
+  
       <!-- Last Name -->
       <div class="form-group">
         <label for="lastName">Last Name</label>
@@ -86,9 +87,10 @@
           type="text"
           formControlName="lastName"
           class="form-control"
-          placeholder="Enter last name" />
+          placeholder="Enter last name"
+          [value]="selectedUser?.lastName" />
       </div>
-
+  
       <!-- Address -->
       <div class="form-group">
         <label for="address">Address</label>
@@ -97,9 +99,10 @@
           type="text"
           formControlName="address"
           class="form-control"
-          placeholder="Enter address" />
+          placeholder="Enter address"
+          [value]="selectedUser?.address" />
       </div>
-
+  
       <!-- Role (Read-Only) -->
       <div class="form-group">
         <label for="role">Role</label>
@@ -108,9 +111,10 @@
           type="text"
           formControlName="role"
           class="form-control"
-          readonly />
+          readonly
+          [value]="selectedUser?.role" />
       </div>
-
+  
       <!-- Email (Read-Only) -->
       <div class="form-group">
         <label for="email">Email</label>
@@ -119,9 +123,10 @@
           type="email"
           formControlName="email"
           class="form-control"
-          readonly />
+          readonly
+          [value]="selectedUser?.email" />
       </div>
-
+  
       <!-- Phone Number (Read-Only) -->
       <div class="form-group">
         <label for="phoneNumber">Phone Number</label>
@@ -130,14 +135,15 @@
           type="text"
           formControlName="phoneNumber"
           class="form-control"
-          readonly />
+          readonly
+          [value]="selectedUser?.phoneNumber" />
       </div>
-
-            <!-- Submit Button -->
-        <button type="submit" class="btn btn-success">Save</button>
-            </form>
-        </div>
-
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-success">Save</button>
+    </form>
+  </div>
+  
 
 
         <!-- Orders Tab -->
