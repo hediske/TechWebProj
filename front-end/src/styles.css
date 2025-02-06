@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "~@fortawesome/fontawesome-free/css/all.css";
+/* @import "~@fortawesome/fontawesome-free/css/all.css"; */
 
 @font-face {
     font-family: 'Poppins';
@@ -22,11 +22,11 @@
 
 
 :root {
-    --main-color : black;
+    --main-color : #232323;
     --box-color :   #F6F6F6;
     --breadcrumb--color : #999999;
     --text-color: #525252;
-
+    --font-body-size: 12px
     
 }
 
@@ -168,3 +168,7 @@ body{
 .hidden{
     display: none;
 }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

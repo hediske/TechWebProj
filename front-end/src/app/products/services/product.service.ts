@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Product } from 'src/app/Model/Product';
+import { Product } from '../Model/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,16 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.link}/${id}`)
   }
+
+  getRelatedProductsByType(productType: string, excludeProductId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(
+        `${this.link}/related?type=${productType}&excludeId=${excludeProductId}`
+    );
+  }
+
+
+  addProduct(formData: FormData):Observable<any> {
+    return this.http.post(`${this.link}`, formData);
+}
   
 }

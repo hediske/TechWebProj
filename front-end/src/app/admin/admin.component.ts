@@ -10,7 +10,7 @@ export class AdminComponent {
 
   items = sidebar
 
-  panel = "Dashboard"
+  panel = "Users"
 
   setPanel(name: string) {
     this.panel = name

@@ -10,9 +10,9 @@ import { ProductsComponent } from './products/products.component';
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent,
+     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: UsersComponent },
       { path: 'orders', component: OrdersComponent },

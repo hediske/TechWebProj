@@ -20,6 +20,9 @@ export class UserService {
             address: user.address,
             email: user.email,
             role: user.role,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+            blocked: user.blocked,
             status: user.status,
         };
     }
@@ -37,6 +40,7 @@ export class UserService {
             return this.toReturnUserDto(savedUser);
         } catch (error) {
             //zid error table fil db to add it + do we need a rollback ? 
+            console.log(error)
             throw new InternalServerErrorException('Failed to create user');
         }
     }
@@ -54,12 +58,13 @@ export class UserService {
         }
     }
 
+
     async getAllUsers(
         page: number,
         limit: number,
         sort: string,
         order: 'ASC' | 'DESC',
-    ): Promise<ReturnUserDto[]> {
+    ): Promise<{ data: ReturnUserDto[], totalItems: number, totalPages: number }> {
         try {
             const offset = (page - 1) * limit;
 
@@ -69,9 +74,14 @@ export class UserService {
                 skip: offset,
                 take: limit,
             });
-            return users.map(user => this.toReturnUserDto(user));
+    
+            return {
+                data: users.map(user => this.toReturnUserDto(user)),
+                totalItems: total,
+                totalPages: Math.ceil(total / limit)
+            };    
         } catch (error) {
-
+            console.log(error)
             throw new InternalServerErrorException('error while getting users');
         }
     }
@@ -110,4 +120,32 @@ export class UserService {
     async findByEmail(email: string): Promise<User> {
         return this.userRepository.findOne({ where: { email } });
     }
+
+    async blockUser(id: number): Promise<ReturnUserDto> {
+        try {
+          const user = await this.userRepository.findOne({ where: { id } });
+          if (!user) {
+            throw new NotFoundException(`User with ID ${id} not found`);
+          }
+          user.blocked = true;
+          const updatedUser = await this.userRepository.save(user);
+          return this.toReturnUserDto(updatedUser);
+        } catch (error) {
+          throw new InternalServerErrorException('Failed to block user');
+        }
+      }
+    
+      async unblockUser(id: number): Promise<ReturnUserDto> {
+        try {
+          const user = await this.userRepository.findOne({ where: { id } });
+          if (!user) {
+            throw new NotFoundException(`User with ID ${id} not found`);
+          }
+          user.blocked = false;
+          const updatedUser = await this.userRepository.save(user);
+          return this.toReturnUserDto(updatedUser);
+        } catch (error) {
+          throw new InternalServerErrorException('Failed to unblock user');
+        }
+      }
 }

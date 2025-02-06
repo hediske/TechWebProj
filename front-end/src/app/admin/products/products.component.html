@@ -1,1 +1,159 @@
-<p>products works!</p>
+<button (click)="navigateToAddProduct()" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Add Product
+</button>
+<app-table [allDataLoaded]="true" [columns]="columns"  [data]="prods" [requireCols]="true" [cardTemplate]="userCardTemplate" [isCustomizable]="false" [rowTemplate]="rowTemplate" [isFilterable]="true" [isCustomizable]="true" >
+    
+</app-table>
+
+
+<!-- Row Template -->
+<ng-template #rowTemplate let-item>
+    <span  (click)="addModal(item.id, userModalTemplate)" class="justify-content-around  w-100  d-flex flex-row pointer align-items-center  element p-3 rounded-2   ">
+        <h5 class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.id }}</h5>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.name }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.brand }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.stock }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.archived }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;" > {{item.type}}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.description }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.price }}</p>
+        <p class="flex-grow-1 text-center item-cell" style="word-wrap: break-word;">{{ item.availability }}</p>
+        <span *ngFor="let image of item.images">
+            <img style="width: 100px;" [src]="image.url" alt="Product Image" class="img-fluid" />
+        </span>
+    </span>
+
+</ng-template>
+
+
+<!-- Card Template -->
+<ng-template #userCardTemplate let-item>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">{{ item.firstName }} {{ item.lastName }}</h5>
+        </div>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">{{ item.role }}</h6>
+            <p class="card-text">{{ item.email }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ item.phoneNumber }}</p>
+            <p class="card-text"><strong>Adress:</strong> {{ item.address }}</p>
+            <p class="card-text"><strong>Joined on:</strong> {{ item.createdAt | date }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary" (click)="addModal(item.id, userModalTemplate)">View Profile</button>
+        </div>
+    </div>
+</ng-template>
+
+
+
+<!-- Modal template -->
+<ng-template #userModalTemplate >
+  
+
+          <!-- Loader -->
+          <div *ngIf="loading" class="loader">
+              <p>Loading user data...</p>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="error" class="error-message">
+              <p>{{ error }}</p>
+          </div>
+
+          <!-- Tabs -->
+          <nav class="modal-navbar">
+              <button (click)="setActiveTab('user')" [class.active]="activeTab === 'user'">User</button>
+              <button (click)="setActiveTab('orders')" [class.active]="activeTab === 'orders'">Orders</button>
+              <button (click)="setActiveTab('contact')" [class.active]="activeTab === 'contact'">Contact</button>
+          </nav>
+
+          <!-- Tab Content -->
+           <!-- Tab Content -->
+  <!-- User Tab with Form -->
+  <div *ngIf="activeTab === 'user'">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          placeholder="Enter first name" />
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          placeholder="Enter last name" />
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          id="address"
+          type="text"
+          formControlName="address"
+          class="form-control"
+          placeholder="Enter address" />
+      </div>
+
+      <!-- Role (Read-Only) -->
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input
+          id="role"
+          type="text"
+          formControlName="role"
+          class="form-control"
+          readonly />
+      </div>
+
+      <!-- Email (Read-Only) -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-control"
+          readonly />
+      </div>
+
+      <!-- Phone Number (Read-Only) -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          type="text"
+          formControlName="phoneNumber"
+          class="form-control"
+          readonly />
+      </div>
+
+            <!-- Submit Button -->
+        <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+
+
+
+        <!-- Orders Tab -->
+          <div *ngIf="activeTab === 'orders'">
+              <p>Orders</p>
+          </div>
+          <div *ngIf="activeTab === 'contact'">
+              <p>Contact</p>
+          </div>
+
+
+
+</ng-template>

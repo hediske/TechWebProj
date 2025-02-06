@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, ReturnUserDto, UpdateUserDto } from './dto/user.dto';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './user.entity';
 import { RolesGuard } from '../auth/roles.guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guards';
@@ -10,11 +10,11 @@ import { Roles } from 'src/auth/roles.decorator';
 
 
 @ApiTags('users') // sawgger tag
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN)
+
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'All users retrieved', type: [ReturnUserDto] })
@@ -28,7 +28,7 @@ export class UserController {
     @Query('limit') limit: number = 10,
     @Query('sort') sort: string = 'id',
     @Query('order') order: 'ASC' | 'DESC' = 'ASC',
-  ): Promise<ReturnUserDto[]> {
+  ): Promise<{ data: ReturnUserDto[], totalItems: number, totalPages: number }> {
     return this.userService.getAllUsers(page, limit, sort, order);
   }
 
@@ -38,12 +38,11 @@ export class UserController {
   @Get(':id')
   @ApiOperation({ summary: 'user by id' })
   @ApiResponse({ status: 200, description: 'success', type: User })
-  async getUserById(@Param('id') id: number): Promise<ReturnUserDto> {
+  async getUserById(@Param('id') id: number, @Req() req): Promise<ReturnUserDto> {
     return this.userService.getUserById(id);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN)
+
   @Post()
   @ApiOperation({ summary: 'create user' })
   @ApiResponse({ status: 201, description: 'success', type: ReturnUserDto })
@@ -59,7 +58,7 @@ export class UserController {
   async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<ReturnUserDto> {
     return this.userService.updateUser(id, updateUserDto);
   }
-  
+
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Delete(':id')
@@ -68,4 +67,24 @@ export class UserController {
   async deleteUser(@Param('id') id: number): Promise<void> {
     return this.userService.deleteUser(id);
   }
+
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
+  @Put(':id/block')
+  @ApiOperation({ summary: 'Block user' })
+  @ApiResponse({ status: 200, description: 'User blocked successfully', type: ReturnUserDto })
+  async blockUser(@Param('id') id: number): Promise<ReturnUserDto> {
+    return this.userService.blockUser(id);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
+  @Put(':id/unblock')
+  @ApiOperation({ summary: 'Unblock user' })
+  @ApiResponse({ status: 200, description: 'User unblocked successfully', type: ReturnUserDto })
+  async unblockUser(@Param('id') id: number): Promise<ReturnUserDto> {
+    return this.userService.unblockUser(id);
+  }
+
 }

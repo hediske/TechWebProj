@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { UserRole, UserStatus } from '../enum/userType';
 import { Token } from 'src/token/token.entity';
 
@@ -42,7 +42,20 @@ export class User {
     enum: UserStatus,
     default: UserStatus.ACTIVE,
   })
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   status: UserStatus;
   @OneToMany(() => Token, token => token.user)
   tokens: Token[]; // ORM dima lazyload relationships yaani tawa ana field mte3 tokens te3 kol user (no need to query it manually)
+
+  @Column({
+    type: 'boolean',
+    default: false,
+  })
+  blocked: boolean;
 }

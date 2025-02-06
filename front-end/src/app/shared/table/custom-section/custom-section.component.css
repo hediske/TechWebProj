@@ -1,0 +1,50 @@
+.button{
+    border: 1px solid;
+    height:50px;
+    width:50px;
+    font-size : 1.6em;
+    color: #525252;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+
+}
+
+.notSelected{
+    background-color:#dfdfdf;
+    border-color: #808080;
+}
+
+.selected{
+    color:#232323;
+    border-color: #232323;
+}
+
+
+.label{
+    font-size: var(--font-body-size);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    line-height: 22px;
+    text-transform: capitalize;
+    text-align: left;
+    color: #232323;
+}
+
+mat-form-field{
+    width: 100px;
+    height: 80px;
+    transform: scale(0.7);
+}
+
+.icon{
+    height:40px;
+    width:40px;
+}
+
+.icon2{
+    height:25px;
+    width:25px;
+    margin: 8px;
+}

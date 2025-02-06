@@ -1,35 +1,44 @@
-import { Type } from "class-transformer";
-import { IsNotEmpty, IsString, IsNumber, IsUrl, Min, MaxLength } from "class-validator";
+import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, MinLength, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class AddProductDto {
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(50, { message: 'The name must be at most 50 characters long.' })
-  name: string;
+    
+    @IsString()
+    @IsNotEmpty({ message: 'Le nom du produit est obligatoire.' })
+    @MinLength(2, { message: 'Le nom du produit doit contenir au moins 2 caractères.' })
+    name: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(50, { message: 'The brand must be at most 50 characters long.' })
-  brand: string;
+    @IsString()
+    @IsNotEmpty({ message: 'La marque est obligatoire.' })
+    @MinLength(2, { message: 'La marque doit contenir au moins 2 caractères.' })
+    brand: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(50, { message: 'The type must be at most 50 characters long.' })
-  type: string;
+    @IsNumber()
+    @IsNotEmpty({ message: 'Le stock du produit est obligatoire.' })
+    @IsPositive({ message: 'Le stock doit être un nombre positif.' })
+    stock: number;
 
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(255, { message: 'The description must be at most 255 characters long.' })
-  description: string;
+    @IsBoolean()
+    @IsOptional()
+    archived?: boolean;
 
-  @IsNotEmpty()
-  @Type(() => Number)
-  @IsNumber({}, { message: 'The price must be a valid number.' })
-  @Min(0, { message: 'The price cannot be negative.' })
-  price: number;
+    @IsString()
+    @IsNotEmpty({ message: 'Le type est obligatoire.' })
+    type: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @IsUrl({}, { message: 'The imageURL must be a valid URL.' })
-  imageURL: string;
+    @IsString()
+    @IsOptional()
+    @MinLength(10, { message: 'La description doit contenir au moins 10 caractères.' })
+    description?: string;
+
+    @IsNumber()
+    @IsNotEmpty({ message: 'Le price du produit est obligatoire.' })
+    @IsPositive({ message: 'Le prix doit être un nombre positif.' })
+    price: number;
+
+    // @IsArray()
+    // @IsOptional()
+    // @ValidateNested({ each: true })
+    // @Type(() => String)
+    // images?: string[]; // URLs des images
 }

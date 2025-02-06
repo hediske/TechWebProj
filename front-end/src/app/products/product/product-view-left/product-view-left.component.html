@@ -1,1 +1,34 @@
-<img src="..." class="img-thumbnail" alt="...">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <!-- Carousel Indicators -->
+  <div class="carousel-indicators">
+    <button 
+      *ngFor="let image of product?.images; let i = index" 
+      type="button" 
+      data-bs-target="#carouselExampleFade"
+      [attr.data-bs-slide-to]="i" 
+      [ngClass]="{'active': i === 0}" 
+      [attr.aria-current]="i === 0 ? 'true' : null"
+      [attr.aria-label]="'Slide ' + (i + 1)">
+    </button>
+  </div>
+
+      <!-- Carousel Inner -->
+    <div class="carousel-inner">
+      <div 
+        *ngFor="let image of product?.images; let i = index"
+        [ngClass]="{'carousel-item': true, 'active': i === 0}">
+        <img [src]="image.url" class="d-block w-100" alt="product">
+      </div>
+    </div>
+
+      <!-- Carousel Controls -->
+    <button class="carousel-control-prev btn-secondary" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>

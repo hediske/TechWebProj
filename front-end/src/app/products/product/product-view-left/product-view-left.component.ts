@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/products/Model/Product';
+
+
 
 @Component({
   selector: 'app-product-view-left',
@@ -7,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class ProductViewLeftComponent {
 
+  @Input() product: Product | null = null;
+
+  ngOnInit(){
+    console.log(this.product)
+  }
 }

@@ -1,0 +1,63 @@
+.bgProduct {
+    display: block;
+    min-height: 100vh; /* Assure que le fond couvre toute la hauteur de la page */
+    background-image: url('images/bg2.jpg'); /* Chemin de votre image */
+    background-size: cover; /* Ajuste l'image pour couvrir toute la page */
+    background-position: center; /* Centrer l'image */
+    background-repeat: no-repeat; /* Empêche la répétition */
+    padding: 50px;
+  }
+
+  .image {
+    height: 80%;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%; 
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.card {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-title-spacer-y: 0.5rem;
+    --bs-card-title-color: ;
+    --bs-card-subtitle-color: ;
+    --bs-card-border-width: var(--bs-border-width);
+    --bs-card-border-color: var(--bs-border-color-translucent);
+    --bs-card-border-radius: var(--bs-border-radius);
+    --bs-card-box-shadow: ;
+    --bs-card-inner-border-radius: calc(var(--bs-border-radius) -(var(--bs-border-width)));
+    --bs-card-cap-padding-y: 0.5rem;
+    --bs-card-cap-padding-x: 1rem;
+    --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
+    --bs-card-cap-color: ;
+    --bs-card-height: ;
+    --bs-card-color: ;
+    --bs-card-bg: var(--bs-body-bg);
+    --bs-card-img-overlay-padding: 1rem;
+    --bs-card-group-margin: 0.75rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--bs-card-height);
+    color: var(--bs-body-color);
+    word-wrap: break-word;
+    background-color: var(--bs-card-bg);
+    background-clip: border-box;
+    border: var(--bs-card-border-width) var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+}
+
+.product-name {
+    text-decoration: none;
+    color: #000;
+    transition: text-decoration 0.2s ease;
+  }
+  
+  .product-name:hover {
+    text-decoration: underline;
+    color: black;
+  }

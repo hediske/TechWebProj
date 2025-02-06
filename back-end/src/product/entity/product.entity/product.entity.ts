@@ -1,29 +1,60 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { IsNotEmpty, IsBoolean, IsNumber, IsPositive, IsString, MaxLength, Min, IsOptional } from "class-validator";
+import { ImageEntity } from "../image.entity/image.entity";
+import { Expose } from "class-transformer";
 
+
+// stock , archived , 
 @Entity('product')
 export class ProductEntity {
 
-    @PrimaryColumn()
-    id: number
+    @PrimaryGeneratedColumn() 
+    id: number;
 
-    @Column()
-    name: string
+    @Column({ nullable: false })
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(100) 
+    name: string;
 
-    @Column()
-    brand: string
+    @Column({ nullable: false })
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(50) 
+    brand: string;
 
-    @Column()
-    availability: string
+    @Column({ nullable: false, default: 0 })
+    @IsNumber()
+    @Min(0)
+    stock: number;
 
-    @Column()
-    type: string
+    @Column({ nullable: false, default: false })
+    @IsBoolean() 
+    archived: boolean;
 
-    @Column()
-    description: string
+    @Column({ nullable: false })
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(50)
+    type: string;
 
-    @Column()
-    price: number
+    @Column('text')
+    @IsString()
+    description: string;
 
-    @Column()
-    imageURL: string
+    @Column({ nullable: false, type: 'decimal', precision: 10, scale: 2 })
+    @IsNotEmpty()
+    @IsPositive() 
+    price: number;
+
+    @Expose()
+        @IsOptional()
+        get availability(): boolean {
+            return this.stock > 0;
+        }
+    
+    @OneToMany(() => ImageEntity, (image) => image.product, { cascade: true })
+    images: ImageEntity[];
+
+    
 }

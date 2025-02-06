@@ -1,0 +1,9 @@
+<div *ngFor="let modal of modals">
+    <div class="modal-overlay" (click)="closeModal(modal.id)">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <button class="close-btn" (click)="closeModal(modal.id)">✖</button>
+            <h2>{{ modal.title }}</h2>
+            <ng-container *ngTemplateOutlet="modal.template"></ng-container>
+        </div>
+    </div>
+</div>

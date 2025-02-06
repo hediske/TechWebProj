@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from './services/product.service';
-import { Product } from '../Model/Product';
+import { Product } from './Model/Product';
 
 @Component({
   selector: 'app-products',
@@ -22,6 +22,7 @@ export class ProductsComponent {
     this.productService.getProducts().subscribe(
       (products) => {
         this.products = products;
+        console.log(this.products)
       },
       (error) => {
         alert('API access problem');
