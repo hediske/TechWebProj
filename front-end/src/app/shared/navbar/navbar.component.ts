@@ -1,0 +1,69 @@
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { navLinks, navLink } from 'src/assets/data/navLinks'; 
+import { AuthService } from '../../user/auth.service';
+import { UserService } from 'src/app/user/user.service';
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent implements OnInit {
+
+  @ViewChild('stickyNav') stickyNav: any;
+  
+  constructor(private authService: AuthService, private userService : UserService){}
+
+  navLinks : navLink[] | undefined;
+  searchValue : string | undefined = undefined;
+  isLoggedIn: boolean = false;
+  isUser: boolean = false;
+  imgUrl: string = '';
+  
+  
+  /**
+   * TODO: ADD a search method here !
+   */
+  handleSearch(){ 
+    if(!this.searchValue || this.searchValue.length < 3) return;
+    // TODO: ADD a search method here
+  }
+  
+  checkLogin(){
+    if (this.authService.isLoggedIn()){
+      this.isLoggedIn = true;
+      this.imgUrl = this.userService.getAvatar();
+      if(this.authService.getUserRole() === 'user'){
+        this.isUser = true;
+      }
+      else {
+        this.isUser = false;
+      }
+    }
+  }
+
+  scrollCallback(){
+    const scrollPos : number = window.scrollY || document.documentElement.scrollTop
+    if(scrollPos > 100){
+      this.stickyNav.nativeElement.classList.add('sticky')
+    }
+    else{
+      this.stickyNav.nativeElement.classList.remove('sticky')
+    }
+
+    console.log(scrollPos)
+  }
+
+  @HostListener('window:scroll', [])
+    onWindowScroll(){
+      this.scrollCallback()
+    }
+  
+  
+  
+  ngOnInit(): void {
+    this.navLinks = navLinks
+    console.log(this.navLinks)
+    this.checkLogin()
+  }
+
+}

@@ -1,0 +1,21 @@
+<header class="d-flex flex-row  justify-content-between px-5 py-3    w-100  align-items-center ">
+
+
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li style="cursor:pointer" (click)="setDashboard()" class="breadcrumb-item "  >
+                        Admin
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div>
+        <button (click)="logout()">
+            Logout
+        </button>
+    </div>
+
+</header>

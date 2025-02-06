@@ -1,0 +1,170 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+:root {
+    --main-color : black;
+    --box-color :   #F6F6F6;
+    --breadcrumb--color : #999999;
+    --text-color: #525252;
+
+    
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Poppins , "sans-serif" ;
+}
+
+.header{
+    color:var(--main-color);
+    font-size: 0.83em;
+    font-weight:700;
+    line-height: 10px;
+    text-decoration: none;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase ;
+    position: relative;
+    font-family: Poppins-Bold;
+
+}
+
+
+.navLink::before{
+    content: "";
+    position: absolute;
+    height: 2px;
+    /* background-color: transparent; */
+    width: 0%;
+    bottom: -3px;
+    animation: none;
+    background-color: black;
+}
+
+
+
+.navLink:hover::before{
+    animation-name: slide-in;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+}
+
+
+
+.navLink:not(:hover)::before{
+    animation-name: slide-out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes slide-in {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width:100% ;
+    }
+}
+@keyframes slide-out {  
+    from{
+        width: 100%;
+    }
+    to{
+        width: 0%;
+    }
+
+}
+.search{
+    background-color: var(--box-color);
+    color : #a5a5a5;
+    border:none;
+    outline: 0cm;
+    height: 3rem;
+    font-size: 0.8em;
+    padding-left: 50px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.navicon{
+    font-size : 1.2rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+}
+
+.navicon:hover{
+    transform: scale(1.1);
+    opacity: 0.9;  
+}
+
+.text{
+    font-size: 0.8em !important;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.footerLink:hover{
+    border-bottom: #525252 1px solid;
+}
+
+
+.mainLogo{
+    height: 60px;
+}
+
+.fade-in{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 1.2s ease-in forwards;
+}
+
+@keyframes fadeInAnimation{
+    0%{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sticky{
+    position:sticky !important;
+    top: 0;
+    z-index: 999;
+    background-color: white !important;
+    box-shadow: #525252 0px 0px 1px 0px;
+}
+
+.hidden{
+    display: none;
+}

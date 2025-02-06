@@ -1,0 +1,73 @@
+<footer *ngIf="!isLoggedIn || isUser" class="container-fluid"> 
+    <div class="row p-3 first py-5">
+
+            <div *ngFor="let link of footerLinks" class="col-md-4 col col-lg-2 ">
+                <div>
+                    <h3 class="header mb-4">{{link.group}}</h3>
+                    <ul class="list-unstyled "> 
+                        <li class="mb-2" *ngFor="let item of link.links">
+                            <a class="text footerLink" [routerLink]="item.link">{{item.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col fs-1 d-flex flex-column  gap-3 justify-content-center align-content-center  ">
+                <img class="altlogo" src="/assets/images/alt-logo-300.png" alt="logo"/>
+                <div class="contact">
+                    <div class="d-flex flex-row align-content-center gap-3 ">
+                        <span><i class="fa-brands fa-whatsapp h5"></i></span>
+                        <span>WhatsApp : 
+                            <a href="https://api.whatsapp.com/send/?phone=55912156" target="_blank"> 
+                                12345678
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="d-flex flex-row align-content-center gap-3 ">
+                        <span><i class="fa-solid fa-envelope h5"></i></span>
+                        <span>Email : 
+                            <a href="mailto:mohamedhedi.aissi@yahoo.fr" target="_blank"> 
+                                {{"john.doe@email.com"}}
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <ul class="list-unstyled list social px-3 d-flex flex-row gap-2 gap-lg-4 align-content-center">
+                        <a href="https://www.facebook.com/" class="text-decoration-none " target="_blank">
+                            <li class="rounded-circle  d-flex justify-content-center link">
+                                <i class=" logo fa-brands fa-facebook-f"></i>
+                            </li>
+                        </a>
+                        <a href="https://www.tiktok.com/" class="text-decoration-none " target="_blank">
+                            <li class="rounded-circle d-flex justify-content-center link">
+                                <i class=" logo fa-brands fa-tiktok"></i>
+                            </li>
+                        </a>
+                        <a href="https://www.youtube.com/" class="text-decoration-none " target="_blank">
+                            <li class="rounded-circle d-flex justify-content-center  link">
+                                <i class="logo fa-brands fa-youtube"></i>
+                            </li>
+                        </a>
+                        <a href="https://www.instagram.com/" class="text-decoration-none " target="_blank">
+                                <li class="rounded-circle d-flex justify-content-center  link">
+                                <i class="logo fa-brands fa-square-instagram"></i>
+                            </li>
+                        </a>
+                </ul>
+            </div>
+
+    </div>
+    <div class="d-flex justify-content-around py-5 flex-column flex-md-row gap-5   ">
+        <div class="w-50" >
+            Copyright © {{anio}} <div class="mt-1 ">All rights Reserved </div> 
+        </div>
+        <div class=" d-flex flex-wrap gap-1 ">
+            <div *ngFor="let card of footerCards" >
+                <div >
+                    <img class="cardLogo" [src]="'assets/cards/' + card" [alt]="card">
+                </div>
+            </div>
+        </div>   
+    </div>
+</footer>
